@@ -3,13 +3,13 @@
 ![enter image description here](https://cdn1.iconfinder.com/data/icons/hawcons/32/698693-icon-102-document-file-xml-24.png) **Current version config:** 156<br>
 ![enter image description here](https://cdn4.iconfinder.com/data/icons/logos-4/24/Translate-24.png) **Languages:** Russian, English<br>
 
-### ![enter image description here](https://cdn3.iconfinder.com/data/icons/social-7/500/Help_mark_query_question_support_talk-20.png)What is it?
+### ![enter image description here](https://cdn3.iconfinder.com/data/icons/social-7/500/Help_mark_query_question_support_talk-24.png)What is it?
 This is a library for reading and writing binary file elements.data of the multiplayer game "Perfect World".
 Currently on version 0.1.1 library can read elements.data to version 156. However, the library uses the configuration file in xml format.
 All data from elements.data will be placed into a **DataSet**
 <br>
 <br>
-### ![enter image description here](https://cdn1.iconfinder.com/data/icons/flat-design-icons-set-1/256/Free-14-20.png) Configuration file
+### ![enter image description here](https://cdn1.iconfinder.com/data/icons/flat-design-icons-set-1/256/Free-14-24.png) Configuration file
 Elements.data Files has many versions and fields, so the configuration file is used. In the configuration file from lists and fields of elements.data, their versions, links, and additional attributes in the XML format. 
 Part of the configuration file:
 ```html
