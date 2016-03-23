@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace PWEasyEditor.ElementsAPI.Configs
+namespace PWEasyEditor.Elements.Configs
 {
-    public class ConfigWriter
+    public class ConfigWriter : IConfigWriter
     {
-        private readonly string path;
-        private readonly Config config;
+        public string Path { get; }
+        public Config Config { get; }
 
         public ConfigWriter(string Path, Config Config)
         {
-            this.path = Path;
-            this.config = Config;
+            this.Path = Path;
+            this.Config = Config;
         }
 
-        public void Save() => Save(path, config);
-        public void Save(string Path) => Save(Path, config);
-        public void Save(Config Config) => Save(path, Config);
+        public void Save() => Save(Path, Config);
+        public void Save(string Path) => Save(Path, Config);
+        public void Save(Config Config) => Save(Path, Config);
 
         public void Save(string Path, Config Config)
         {

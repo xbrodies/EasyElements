@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace PWEasyEditor.ElementsAPI
+namespace PWEasyEditor.Elements
 {
     public class ElementsType
     {

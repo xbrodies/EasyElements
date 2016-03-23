@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
+using PWEasyEditor.Elements.Configs;
 
-namespace PWEasyEditor.ElementsAPI.Configs
+namespace PWEasyEditor.Elements.Configs
 {
-    public class ConfigReader
+    public class ConfigReader : IConfigReader
     {
         public string ConfigPath { get; private set; }
         public Config Config { get; private set; }

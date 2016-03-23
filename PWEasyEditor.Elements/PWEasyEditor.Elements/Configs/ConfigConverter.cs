@@ -4,9 +4,8 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using PWEasyEditor.ElementsAPI.Configs;
 
-namespace PWEasyEditor.ElementsAPI.Configs
+namespace PWEasyEditor.Elements.Configs
 {
     public static class ConfigConverter
     {

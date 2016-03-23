@@ -8,18 +8,18 @@ using System.Runtime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using PWEasyEditor.ElementsAPI.Configs;
+using PWEasyEditor.Elements.Configs;
 
-namespace PWEasyEditor.ElementsAPI
+namespace PWEasyEditor.Elements
 {
-    public class ElementsReader
+    public class ElementsReader : IElementsReader
     {
         public string PathElements { get; }
         public Elements Elements { get; private set; }
         public bool IsCompleted { get; private set; }
 
         public int ListCount { get; private set; }
-        public int ListReading { get; set; }
+        public int ListReading { get; private set; }
 
         public Config Config { get; }
         private short version;
@@ -32,6 +32,7 @@ namespace PWEasyEditor.ElementsAPI
             this.PathElements = pathElements;
             this.Config = new ConfigReader(pathToConfigs).Open();
         }
+
         public ElementsReader(string pathElements, Config config)
         {
             if (config == null)

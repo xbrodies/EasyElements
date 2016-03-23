@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace PWEasyEditor.ElementsAPI.Configs
+namespace PWEasyEditor.Elements.Configs
 {
     public class SeleditConfigReader
     {

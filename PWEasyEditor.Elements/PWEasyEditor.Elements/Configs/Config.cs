@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace PWEasyEditor.ElementsAPI.Configs
+namespace PWEasyEditor.Elements.Configs
 {
     public class Config
     {

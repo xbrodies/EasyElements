@@ -41,17 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configs\Config.cs" />
-    <Compile Include="Configs\ConfigConverter.cs" />
     <Compile Include="Configs\ConfigReader.cs" />
     <Compile Include="Configs\ConfigWriter.cs" />
-    <Compile Include="Configs\SeleditConfigReader.cs" />
+    <Compile Include="Configs\IConfigReader.cs" />
+    <Compile Include="Configs\IConfigWriter.cs" />
     <Compile Include="Elements.cs" />
     <Compile Include="ElementsList.cs" />
     <Compile Include="ElementsListType.cs" />
     <Compile Include="ElementsReader.cs" />
     <Compile Include="ElementsRelation.cs" />
     <Compile Include="ElementsType.cs" />
-    <Compile Include="ElementsWriter.cs" />
+    <Compile Include="IElementsReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
