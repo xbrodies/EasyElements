@@ -37,7 +37,7 @@ var elements = elFile.Open();
 ```
 
  - Or, you can use pre-boot configuration files:
-```charp
+```csharp
 var conf = new ConfigReader("Path to config.xml");
 conf.Open();
 
@@ -48,8 +48,17 @@ var elements = elFile.Open();
 > Loading file takes some amount of time. Usually the two or three seconds. I recommend using the "Open" method on a different thread. In the future, we will implement a multithreaded method.
  
   - How to access data
-```charp
+```csharp
 var data = Elements.Values.Tables["026 - UNIONSCROLL_ESSENCE"];
 foreach (DataRow row in data.Rows)
         Console.WriteLine($"ID: {row["ID"]}");
 ```
+
+### ![enter image description here](https://cdn2.iconfinder.com/data/icons/finance-vol-3-1/128/finance-67-24.png) Contacts
+ - E-Mail: skillet123q@gmail.com
+ - Skype: dimonpw2
+
+ 
+
+
+### Thank you
