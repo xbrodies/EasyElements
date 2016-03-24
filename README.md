@@ -49,7 +49,7 @@ var elements = elFile.Open();
  
   - How to access data
 ```csharp
-var data = Elements.Values.Tables["026 - UNIONSCROLL_ESSENCE"];
+var data = Elements.Data.Tables["026 - UNIONSCROLL_ESSENCE"];
 foreach (DataRow row in data.Rows)
         Console.WriteLine($"ID: {row["ID"]}");
 ```
