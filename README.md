@@ -1,11 +1,11 @@
 # Easy Elements #
-![enter image description here](https://cdn0.iconfinder.com/data/icons/windows8_icons/26/dll.png) **Current version library:** 0.1.1<br>
+![enter image description here](https://cdn0.iconfinder.com/data/icons/windows8_icons/26/dll.png) **Current version library:** 0.1.2<br>
 ![enter image description here](https://cdn1.iconfinder.com/data/icons/hawcons/32/698693-icon-102-document-file-xml-24.png) **Current version config:** 156<br>
 ![enter image description here](https://cdn4.iconfinder.com/data/icons/logos-4/24/Translate-24.png) **Languages:** Russian, English<br>
 
 ### ![enter image description here](https://cdn3.iconfinder.com/data/icons/social-7/500/Help_mark_query_question_support_talk-24.png)What is it?
 This is a library for reading and writing binary file elements.data of the multiplayer game "Perfect World".
-Currently on version 0.1.1 library can read elements.data to version 156. However, the library uses the configuration file in xml format.
+Currently on version 0.1.2 library can read elements.data to version 156. However, the library uses the configuration file in xml format.
 All data from elements.data will be placed into a **DataSet**
 <br>
 <br>
