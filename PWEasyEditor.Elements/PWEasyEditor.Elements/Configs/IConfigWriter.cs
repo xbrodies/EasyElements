@@ -1,4 +1,4 @@
-﻿namespace PWEasyEditor.Elements.Configs
+﻿namespace EasyElements.Configs
 {
     public interface IConfigWriter
     {

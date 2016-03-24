@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace PWEasyEditor.Elements
+namespace EasyElements
 {
     public class ElementsRelation
     {

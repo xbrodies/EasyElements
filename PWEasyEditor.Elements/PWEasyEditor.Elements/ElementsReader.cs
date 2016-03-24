@@ -8,9 +8,9 @@ using System.Runtime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using PWEasyEditor.Elements.Configs;
+using EasyElements.Configs;
 
-namespace PWEasyEditor.Elements
+namespace EasyElements
 {
     public class ElementsReader : IElementsReader
     {

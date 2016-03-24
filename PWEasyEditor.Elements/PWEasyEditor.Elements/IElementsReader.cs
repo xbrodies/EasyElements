@@ -1,6 +1,6 @@
-﻿using PWEasyEditor.Elements.Configs;
+﻿using EasyElements.Configs;
 
-namespace PWEasyEditor.Elements
+namespace EasyElements
 {
     public interface IElementsReader
     {

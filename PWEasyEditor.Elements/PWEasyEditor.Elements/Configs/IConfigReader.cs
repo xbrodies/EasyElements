@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PWEasyEditor.Elements.Configs
+namespace EasyElements.Configs
 {
     public interface IConfigReader
     {

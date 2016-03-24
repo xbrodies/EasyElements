@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace PWEasyEditor.Elements
+namespace EasyElements
 {
     public class ElementsData
     {

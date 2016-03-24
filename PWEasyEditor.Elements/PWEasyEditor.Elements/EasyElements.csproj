@@ -7,8 +7,8 @@
     <ProjectGuid>{DC1155EE-3F93-4DA5-B538-B9320853C927}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PWEasyEditor.Elements</RootNamespace>
-    <AssemblyName>PWEasyEditor.Elements</AssemblyName>
+    <RootNamespace>EasyElements</RootNamespace>
+    <AssemblyName>EasyElements</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

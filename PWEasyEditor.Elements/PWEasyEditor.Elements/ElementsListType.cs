@@ -1,4 +1,4 @@
-﻿namespace PWEasyEditor.Elements
+﻿namespace EasyElements
 {
     public enum ElementsListType
     {

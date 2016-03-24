@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace PWEasyEditor.Elements.Configs
+namespace EasyElements.Configs
 {
     public class ConfigReader : IConfigReader
     {
