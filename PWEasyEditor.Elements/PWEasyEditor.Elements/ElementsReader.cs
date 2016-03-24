@@ -15,11 +15,8 @@ namespace PWEasyEditor.Elements
     public class ElementsReader : IElementsReader
     {
         public string PathElements { get; }
-        public Elements Elements { get; private set; }
+        public ElementsData ElementsData { get; private set; }
         public bool IsCompleted { get; private set; }
-
-        public int ListCount { get; private set; }
-        public int ListReading { get; private set; }
 
         public Config Config { get; }
         private short version;
@@ -42,7 +39,7 @@ namespace PWEasyEditor.Elements
             this.Config = config;
         }
 
-        public Elements Open()
+        public ElementsData Open()
         {
             if (string.IsNullOrEmpty(PathElements))
                 throw new ArgumentException("Argument is null or empty", nameof(PathElements));
@@ -54,7 +51,7 @@ namespace PWEasyEditor.Elements
                 Read(br);
 
             IsCompleted = true;
-            return Elements;
+            return ElementsData;
         }
 
         private void Read(BinaryReader br)
@@ -63,24 +60,17 @@ namespace PWEasyEditor.Elements
             var segmentation = br.ReadInt16();
             var dataSet = new DataSet();
             var skipValues = new Dictionary<ElementsList, List<byte[]>>();
-            Elements = new Elements(version, segmentation, dataSet, skipValues);
+            ElementsData = new ElementsData(version, segmentation, dataSet, skipValues);
 
             var Lists = Config.Lists.Where(x => x.Version <= version).ToArray();
 
-            ListCount = Lists.Length;
-            ListReading = 0;
-
             foreach (var list in Lists)
             {
-                ListReading++;
-
                 if (list.Skip != "0")
                     skipValues.Add(list, ReadSkip(br, list));
                 
                 dataSet.Tables.Add(NewTable(br, list));
             }
-
-            
         }
 
         private DataTable NewTable(BinaryReader br, ElementsList list)

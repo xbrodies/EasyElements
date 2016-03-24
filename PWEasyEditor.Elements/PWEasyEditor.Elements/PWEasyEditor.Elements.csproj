@@ -45,7 +45,7 @@
     <Compile Include="Configs\ConfigWriter.cs" />
     <Compile Include="Configs\IConfigReader.cs" />
     <Compile Include="Configs\IConfigWriter.cs" />
-    <Compile Include="Elements.cs" />
+    <Compile Include="ElementsData.cs" />
     <Compile Include="ElementsList.cs" />
     <Compile Include="ElementsListType.cs" />
     <Compile Include="ElementsReader.cs" />

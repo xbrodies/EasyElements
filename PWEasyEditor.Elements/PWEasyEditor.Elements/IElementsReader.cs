@@ -5,14 +5,11 @@ namespace PWEasyEditor.Elements
     public interface IElementsReader
     {
         string PathElements { get; }
-        Elements Elements { get; }
+        ElementsData ElementsData { get; }
         bool IsCompleted { get; }
-
-        int ListCount { get; }
-        int ListReading { get; }
 
         Config Config { get; }
 
-        Elements Open();
+        ElementsData Open();
     }
 }

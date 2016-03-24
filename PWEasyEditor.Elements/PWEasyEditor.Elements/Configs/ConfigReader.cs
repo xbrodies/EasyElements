@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using PWEasyEditor.Elements.Configs;
 
 namespace PWEasyEditor.Elements.Configs
 {
@@ -26,7 +25,7 @@ namespace PWEasyEditor.Elements.Configs
                 throw new ArgumentException("Неверный формат пути к файлу конфигураций", nameof(Path));
 
             if (!File.Exists(Path))
-                throw new FileNotFoundException("Файл конфигураций не найден", Path);
+                throw new FileNotFoundException("File Not Found", Path);
 
            return Read(Path);
         }
