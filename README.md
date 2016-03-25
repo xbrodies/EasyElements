@@ -41,7 +41,7 @@ var elements = elFile.Open();
 var conf = new ConfigReader("Path to config.xml");
 conf.Open();
 
-var elFile = new ElementsFile("Path to elements.data file", conf);
+var elFile = new ElementsReader("Path to elements.data file", conf);
 var elements = elFile.Open(); 
 ```
 
