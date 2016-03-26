@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWEasyEditor.Elements", "PWEasyEditor.Elements\PWEasyEditor.Elements.csproj", "{DC1155EE-3F93-4DA5-B538-B9320853C927}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyElements", "EasyElements\EasyElements.csproj", "{DC1155EE-3F93-4DA5-B538-B9320853C927}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWEasyEditor", "..\..\..\Visual Studio 2015\Projects\PWEasy\PWEasyEditor\PWEasyEditor.csproj", "{4F2B762C-D59C-41FC-8660-295ACA3D3E6E}"
 EndProject
