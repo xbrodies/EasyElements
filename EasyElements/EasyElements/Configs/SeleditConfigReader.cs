@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace PWEasyEditor.Elements.Configs
+namespace EasyElements.Configs
 {
     public class SeleditConfigReader
     {
@@ -80,6 +80,7 @@ namespace PWEasyEditor.Elements.Configs
                 var type = new ElementsType
                 {
                     Name = values[i],
+                    Caption = values[i],
                     Version = Version
                 };
 
@@ -94,7 +95,7 @@ namespace PWEasyEditor.Elements.Configs
                         break;
                     case "string":
                         type.Type = "string";
-                        type.Encoding = "936";
+                        type.Encoding = "gb2312";
                         break;
                     case "float":
                         type.Type = "float";

@@ -9,6 +9,9 @@ namespace EasyElements
         public string Name { get; set; }
 
         [XmlAttribute]
+        public string Caption { get; set; }
+
+        [XmlAttribute]
         public string Type { get; set; }
 
         [XmlAttribute]
