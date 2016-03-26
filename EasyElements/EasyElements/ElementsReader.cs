@@ -60,8 +60,7 @@ namespace EasyElements
             var segmentation = br.ReadInt16();
             var dataSet = new DataSet();
             var skipValues = new Dictionary<ElementsList, List<byte[]>>();
-            ElementsData = new ElementsData(version, segmentation, dataSet, skipValues);
-
+         
             var Lists = Config.Lists.Where(x => x.Version <= version).ToArray();
 
             foreach (var list in Lists)
@@ -71,6 +70,8 @@ namespace EasyElements
                 
                 dataSet.Tables.Add(NewTable(br, list));
             }
+
+            ElementsData = new ElementsData(version, segmentation, dataSet, skipValues);
         }
 
         private DataTable NewTable(BinaryReader br, ElementsList list)
