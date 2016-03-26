@@ -76,11 +76,11 @@ namespace EasyElements
 
         private DataTable NewTable(BinaryReader br, ElementsList list)
         {
-            var table = new DataTable(list.Name);
+            var table = new DataTable(list.Caption);
             var types = list.Types.Where(x => x.Version <= version).ToList();
 
             foreach (var type in types)
-                table.Columns.Add(type.Name, type.GetNormalType());
+                table.Columns.Add(type.Caption, type.GetNormalType());
 
             if (!types.Any()) return table;
 
