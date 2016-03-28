@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Configuration;
+using System.Net.Http;
 using System.Runtime;
 using System.Text;
 using System.Threading;
@@ -48,11 +50,14 @@ namespace EasyElements
                 throw new FileNotFoundException(PathElements);
 
             IsCompleted = false;
+            var stopwatch = Stopwatch.StartNew();
 
             using (var br = new BinaryReader(File.OpenRead(PathElements)))
                 Read(br);
 
+            Debug.Print($"Open the elements.data in {stopwatch.Elapsed} second");
             IsCompleted = true;
+
             return ElementsData;
         }
 
@@ -79,7 +84,7 @@ namespace EasyElements
 
         private DataTable NewTable(BinaryReader br, ElementsList list)
         {
-            var table = new DataTable(list.Caption);
+            var table = new DataTable(list.Name);
             var types = list.Types.Where(x => x.Version <= version).ToList();
 
             foreach (var type in types)
