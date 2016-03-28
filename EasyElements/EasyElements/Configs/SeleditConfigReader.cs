@@ -69,7 +69,8 @@ namespace EasyElements.Configs
             {
                 Name = Name,
                 Skip = Skip ?? null,
-                Version = Version
+                Version = Version,
+                Caption = Name
             };
 
             var values = Values.Split(';');

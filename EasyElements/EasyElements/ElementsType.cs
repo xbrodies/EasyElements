@@ -21,6 +21,9 @@ namespace EasyElements
         public string SizeString { get; set; }
 
         [XmlAttribute]
+        public string isToolTip { get; set; }
+
+        [XmlAttribute]
         public int Version { get; set; }
 
         [XmlElement("Rel")]

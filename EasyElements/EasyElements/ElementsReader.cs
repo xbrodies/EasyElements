@@ -47,6 +47,8 @@ namespace EasyElements
             if (!File.Exists(PathElements))
                 throw new FileNotFoundException(PathElements);
 
+            IsCompleted = false;
+
             using (var br = new BinaryReader(File.OpenRead(PathElements)))
                 Read(br);
 
@@ -60,7 +62,7 @@ namespace EasyElements
             var segmentation = br.ReadInt16();
             var dataSet = new DataSet();
             var skipValues = new Dictionary<ElementsList, List<byte[]>>();
-         
+            
             var Lists = Config.Lists.Where(x => x.Version <= version).ToArray();
 
             foreach (var list in Lists)
@@ -72,6 +74,7 @@ namespace EasyElements
             }
 
             ElementsData = new ElementsData(version, segmentation, dataSet, skipValues);
+
         }
 
         private DataTable NewTable(BinaryReader br, ElementsList list)
@@ -109,7 +112,6 @@ namespace EasyElements
 
                 j++;
             }
-
             return row;
         }
 
