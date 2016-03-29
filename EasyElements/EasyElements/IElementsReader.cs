@@ -6,9 +6,6 @@ namespace EasyElements
     {
         string PathElements { get; }
         ElementsData ElementsData { get; }
-        bool IsCompleted { get; }
-
-        Config Config { get; }
 
         ElementsData Open();
     }

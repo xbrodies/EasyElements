@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Configuration;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Runtime;
 using System.Text;
 using System.Threading;
@@ -18,9 +19,8 @@ namespace EasyElements
     {
         public string PathElements { get; }
         public ElementsData ElementsData { get; private set; }
-        public bool IsCompleted { get; private set; }
 
-        public Config Config { get; }
+        private readonly Config _config;
         private short version;
 
         public ElementsReader(string pathElements, string pathToConfigs)
@@ -29,7 +29,7 @@ namespace EasyElements
                 throw new ArgumentException("Argument is null or empty", nameof(pathToConfigs));
 
             this.PathElements = pathElements;
-            this.Config = new ConfigReader(pathToConfigs).Open();
+            this._config = new ConfigReader(pathToConfigs).Open();
         }
 
         public ElementsReader(string pathElements, Config config)
@@ -38,7 +38,7 @@ namespace EasyElements
                 throw new ArgumentNullException(nameof(config));
 
             this.PathElements = pathElements;
-            this.Config = config;
+            this._config = config;
         }
 
         public ElementsData Open()
@@ -49,14 +49,13 @@ namespace EasyElements
             if (!File.Exists(PathElements))
                 throw new FileNotFoundException(PathElements);
 
-            IsCompleted = false;
             var stopwatch = Stopwatch.StartNew();
 
             using (var br = new BinaryReader(File.OpenRead(PathElements)))
                 Read(br);
 
+            stopwatch.Stop();
             Debug.Print($"Open the elements.data in {stopwatch.Elapsed} second");
-            IsCompleted = true;
 
             return ElementsData;
         }
@@ -67,10 +66,9 @@ namespace EasyElements
             var segmentation = br.ReadInt16();
             var dataSet = new DataSet();
             var skipValues = new Dictionary<ElementsList, List<byte[]>>();
-            
-            var Lists = Config.Lists.Where(x => x.Version <= version).ToArray();
+            var CurrentConfig = _config.Lists.Where(x => x.Version <= version).ToList();
 
-            foreach (var list in Lists)
+            foreach (var list in CurrentConfig)
             {
                 if (list.Skip != "0")
                     skipValues.Add(list, ReadSkip(br, list));
@@ -78,24 +76,25 @@ namespace EasyElements
                 dataSet.Tables.Add(NewTable(br, list));
             }
 
-            ElementsData = new ElementsData(version, segmentation, dataSet, skipValues);
+            ElementsData = new ElementsData(version, segmentation, dataSet, skipValues, CurrentConfig);
 
         }
 
         private DataTable NewTable(BinaryReader br, ElementsList list)
         {
             var table = new DataTable(list.Name);
-            var types = list.Types.Where(x => x.Version <= version).ToList();
+            list.Types = list.Types.Where(x => x.Version <= version).ToList();
 
-            foreach (var type in types)
-                table.Columns.Add(type.Caption, type.GetNormalType());
+            foreach (var type in list.Types)
+                table.Columns.Add(type.Name, type.GetNormalType());
 
-            if (!types.Any()) return table;
+            if (!list.Types.Any())
+                return table;
 
             var length = br.ReadInt32();
 
             for (var i = 0; i < length; i++)
-                table.Rows.Add(NewRow(br, table, types));
+                table.Rows.Add(NewRow(br, table, list.Types));
             
             return table;
         }
