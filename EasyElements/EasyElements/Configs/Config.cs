@@ -13,9 +13,18 @@ namespace EasyElements.Configs
         [XmlAttribute]
         public int ConfigVersion { get; set; }
 
-        public ElementsList GetElementsListByDataTable(DataTable table)
+        /// <summary>
+        /// Возращает файл конфигурации с листами и типами до указанной версии elements.data. Но не изменяет текущий файл конфигураций.
+        /// </summary>
+        /// <param name="version">Версия elements.data</param>
+        /// <returns>Файл конфигурации указанной версии</returns>
+        public Config Downgrade(int version)
         {
-            return Lists.First(x => x.Name == table.TableName);
+            var lists = Lists.Where(x => x.Version <= version).ToList();
+            foreach (var elementsList in lists)
+                elementsList.Types = elementsList.Types.Where(x => x.Version <= version).ToList();
+
+            return new Config { ConfigVersion = version, Lists = lists };
         }
     }
 }
