@@ -18,7 +18,7 @@ namespace EasyElements.Configs
         /// </summary>
         /// <param name="version">Версия elements.data</param>
         /// <returns>Файл конфигурации указанной версии</returns>
-        public Config Downgrade(int version)
+        public Config Downgrade(short version)
         {
             var lists = Lists.Where(x => x.Version <= version).ToList();
             foreach (var elementsList in lists)
