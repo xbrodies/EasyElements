@@ -66,9 +66,9 @@ namespace EasyElements
             var segmentation = br.ReadInt16();
             var dataSet = new DataSet();
             var skipValues = new Dictionary<ElementsList, List<byte[]>>();
-            var CurrentConfig = Config.Lists.Where(x => x.Version <= version).ToList();
+            var CurrentConfig = Config.Downgrade(version);
 
-            foreach (var list in CurrentConfig)
+            foreach (var list in CurrentConfig.Lists)
             {
                 if (list.Skip != "0")
                     skipValues.Add(list, ReadSkip(br, list));
@@ -83,7 +83,6 @@ namespace EasyElements
         private DataTable NewTable(BinaryReader br, ElementsList list)
         {
             var table = new DataTable(list.Name);
-            list.Types = list.Types.Where(x => x.Version <= version).ToList();
 
             foreach (var type in list.Types)
                 table.Columns.Add(type.Name, type.GetNormalType());
