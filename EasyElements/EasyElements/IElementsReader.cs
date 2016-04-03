@@ -1,4 +1,5 @@
-﻿using EasyElements.Configs;
+﻿using System.Security.Cryptography.X509Certificates;
+using EasyElements.Configs;
 
 namespace EasyElements
 {
@@ -6,6 +7,8 @@ namespace EasyElements
     {
         string PathElements { get; }
         ElementsData ElementsData { get; }
+
+        Config Config { get; }
 
         ElementsData Open();
     }

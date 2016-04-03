@@ -18,9 +18,9 @@ namespace EasyElements
         public string Skip { get; set; }
 
         [XmlAttribute]
-        public ElementsListType ListType { get; set; }
+        public string ListType { get; set; }
 
         [XmlElement("Type")]
-        public List<ElementsType> Types { get; set; } = new List<ElementsType>();
+        public List<ElementsType> Types { get; set; } = new List<ElementsType>(); 
     }
 }

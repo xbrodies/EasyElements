@@ -20,7 +20,7 @@ namespace EasyElements
         public string PathElements { get; }
         public ElementsData ElementsData { get; private set; }
 
-        private readonly Config _config;
+        public Config Config { get; }
         private short version;
 
         public ElementsReader(string pathElements, string pathToConfigs)
@@ -29,7 +29,7 @@ namespace EasyElements
                 throw new ArgumentException("Argument is null or empty", nameof(pathToConfigs));
 
             this.PathElements = pathElements;
-            this._config = new ConfigReader(pathToConfigs).Open();
+            this.Config = new ConfigReader(pathToConfigs).Open();
         }
 
         public ElementsReader(string pathElements, Config config)
@@ -38,7 +38,7 @@ namespace EasyElements
                 throw new ArgumentNullException(nameof(config));
 
             this.PathElements = pathElements;
-            this._config = config;
+            this.Config = config;
         }
 
         public ElementsData Open()
@@ -66,7 +66,7 @@ namespace EasyElements
             var segmentation = br.ReadInt16();
             var dataSet = new DataSet();
             var skipValues = new Dictionary<ElementsList, List<byte[]>>();
-            var CurrentConfig = _config.Lists.Where(x => x.Version <= version).ToList();
+            var CurrentConfig = Config.Lists.Where(x => x.Version <= version).ToList();
 
             foreach (var list in CurrentConfig)
             {
