@@ -15,7 +15,7 @@ namespace EasyGShop
         public string SurfacePath { get; set; }
         public int ItemId { get; set; }
         public int ItemAmount { get; set; }
-        public List<GShopSell> SaleOptions = new List<GShopSell>(); // length = 4
+        public List<GShopSell> SaleOptions = new List<GShopSell>();
         public string Description { get; set; }
         public string Name { get; set; }
         public int GiftId { get; set; }

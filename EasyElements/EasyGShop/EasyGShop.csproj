@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GShopCategory.cs" />
     <Compile Include="GShopData.cs" />
     <Compile Include="GShopItem.cs" />
     <Compile Include="GShopReader.cs" />
