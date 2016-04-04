@@ -24,12 +24,19 @@ namespace EasyElements
             this.Segmentation = segmentation;
         }
 
-     //   public DataRow FindByID
-
+        public DataRow FindByID(int ID) => FindByID(ID, ConfigForThisElements.Lists);
         public DataRow FindByID(int ID, List<ElementsList> lists)
         {
             return lists.SelectMany(elementsList => Data.Tables[elementsList.Name].Rows.Cast<DataRow>())
                 .FirstOrDefault(dataRow => dataRow["ID"].Equals(ID));
         }
+
+        public DataRow FindByName(string Name, List<ElementsList> lists)
+        {
+            return lists.SelectMany(x => Data.Tables[x.Name].Rows.Cast<DataRow>())
+                .FirstOrDefault(dataRow => dataRow["Name"].Equals(Name));
+        }
+
+
     }
 }
