@@ -4,13 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Configuration;
-using System.Net.Http;
-using System.Net.Sockets;
-using System.Runtime;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using EasyElements.Configs;
 
 namespace EasyElements
@@ -73,14 +67,13 @@ namespace EasyElements
                 if (list.Skip != "0")
                     skipValues.Add(list, ReadSkip(br, list));
                 
-                dataSet.Tables.Add(NewTable(br, list));
+                dataSet.Tables.Add(ReadList(br, list));
             }
 
             ElementsData = new ElementsData(version, segmentation, dataSet, skipValues, CurrentConfig);
-
         }
 
-        private DataTable NewTable(BinaryReader br, ElementsList list)
+        private DataTable ReadList(BinaryReader br, ElementsList list)
         {
             var table = new DataTable(list.Name);
 
@@ -93,12 +86,12 @@ namespace EasyElements
             var length = br.ReadInt32();
 
             for (var i = 0; i < length; i++)
-                table.Rows.Add(NewRow(br, table, list.Types));
+                table.Rows.Add(ReadItem(br, table, list.Types));
             
             return table;
         }
 
-        private DataRow NewRow(BinaryReader br, DataTable table, List<ElementsType> types)
+        private DataRow ReadItem(BinaryReader br, DataTable table, List<ElementsType> types)
         {
             var row = table.NewRow();
             var j = 0;
