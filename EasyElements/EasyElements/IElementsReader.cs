@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using EasyElements.Configs;
 
 namespace EasyElements
@@ -11,5 +12,6 @@ namespace EasyElements
         Config Config { get; }
 
         ElementsData Open();
+        ElementsData Open(IEnumerable<ElementsList> lists);
     }
 }

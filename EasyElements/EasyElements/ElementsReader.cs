@@ -16,6 +16,8 @@ namespace EasyElements
 
         public Config Config { get; }
         private short version;
+        private ElementsList[] _readLists;
+
 
         public ElementsReader(string pathElements, string pathToConfigs)
         {
@@ -35,6 +37,12 @@ namespace EasyElements
             this.Config = config;
         }
 
+        public ElementsData Open(IEnumerable<ElementsList> lists)
+        {
+            _readLists = lists as ElementsList[] ?? lists.ToArray();
+            return Open();
+        }
+
         public ElementsData Open()
         {
             if (string.IsNullOrEmpty(PathElements))
@@ -43,13 +51,8 @@ namespace EasyElements
             if (!File.Exists(PathElements))
                 throw new FileNotFoundException(PathElements);
 
-            var stopwatch = Stopwatch.StartNew();
-
             using (var br = new BinaryReader(File.OpenRead(PathElements)))
                 Read(br);
-
-            stopwatch.Stop();
-            Debug.Print($"Open the elements.data in {stopwatch.Elapsed} second");
 
             return ElementsData;
         }
@@ -64,10 +67,21 @@ namespace EasyElements
 
             foreach (var list in CurrentConfig.Lists)
             {
+                if(_readLists!=null)
+                  if(_readLists.All(elementsList => dataSet.Tables.Contains(elementsList.Name)))
+                     break;
+
                 if (list.Skip != "0")
                     skipValues.Add(list, ReadSkip(br, list));
-                
-                dataSet.Tables.Add(ReadList(br, list));
+
+                var data = ReadList(br, list);
+
+                if (_readLists != null)
+                {
+                    if (_readLists.All(x => x.Name == list.Name))
+                        dataSet.Tables.Add(data);
+                } else dataSet.Tables.Add(data);
+
             }
 
             ElementsData = new ElementsData(version, segmentation, dataSet, skipValues, CurrentConfig);
@@ -102,7 +116,7 @@ namespace EasyElements
                 {
                     case "int": row[j] = br.ReadInt32(); break;
                     case "float": row[j] = br.ReadSingle(); break;
-                    case "string": row[j] = Encoding.GetEncoding(type.Encoding).GetString(br.ReadBytes(int.Parse(type.SizeString))); break;
+                    case "string": row[j] = Encoding.GetEncoding(type.Encoding).GetString(br.ReadBytes(int.Parse(type.SizeString))).Replace(@"\0", string.Empty); break;
                     default: throw new ArgumentOutOfRangeException();
                 }
 
@@ -154,6 +168,11 @@ namespace EasyElements
                     break;
             }
             return vals;
+        }
+
+        private bool ContainsLists(DataSet data)
+        {
+            return _readLists.All(elementsList => data.Tables.Contains(elementsList.Name));
         }
     }
 }

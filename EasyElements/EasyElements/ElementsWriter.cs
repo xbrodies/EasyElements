@@ -30,7 +30,6 @@ namespace EasyElements
             Config = elementsReader.Config;
         }
 
-
         public void Save()
         {
             if (String.IsNullOrEmpty(Path)) throw new ArgumentException("Argument is null or empty", nameof(Path));
