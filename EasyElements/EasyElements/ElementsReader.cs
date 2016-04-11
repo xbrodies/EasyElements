@@ -92,7 +92,13 @@ namespace EasyElements
             var table = new DataTable(list.Name);
 
             foreach (var type in list.Types)
-                table.Columns.Add(type.Name, type.GetNormalType());
+            {
+                var column = new DataColumn(type.Name, type.GetNormalType());
+
+                column.DefaultValue = column.DataType == typeof (string) ? (object) "" : 0;
+                column.AllowDBNull = false;
+                table.Columns.Add(column);
+            }
 
             if (!list.Types.Any())
                 return table;
@@ -101,7 +107,7 @@ namespace EasyElements
 
             for (var i = 0; i < length; i++)
                 table.Rows.Add(ReadItem(br, table, list.Types));
-            
+
             return table;
         }
 
@@ -168,11 +174,6 @@ namespace EasyElements
                     break;
             }
             return vals;
-        }
-
-        private bool ContainsLists(DataSet data)
-        {
-            return _readLists.All(elementsList => data.Tables.Contains(elementsList.Name));
         }
     }
 }

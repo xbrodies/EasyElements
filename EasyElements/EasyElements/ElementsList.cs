@@ -22,5 +22,7 @@ namespace EasyElements
 
         [XmlElement("Type")]
         public List<ElementsType> Types { get; set; } = new List<ElementsType>(); 
+
+
     }
 }

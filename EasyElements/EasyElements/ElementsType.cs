@@ -39,5 +39,10 @@ namespace EasyElements
                 default: throw new ArgumentOutOfRangeException();
             }
         }
+
+        public override string ToString()
+        {
+            return Caption;
+        }
     }
 }
