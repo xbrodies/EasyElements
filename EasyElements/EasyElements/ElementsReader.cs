@@ -48,9 +48,6 @@ namespace EasyElements
             if (string.IsNullOrEmpty(PathElements))
                 throw new ArgumentException("Argument is null or empty", nameof(PathElements));
 
-            if (!File.Exists(PathElements))
-                throw new FileNotFoundException(PathElements);
-
             using (var br = new BinaryReader(File.OpenRead(PathElements)))
                 Read(br);
 
@@ -122,7 +119,7 @@ namespace EasyElements
                 {
                     case "int": row[j] = br.ReadInt32(); break;
                     case "float": row[j] = br.ReadSingle(); break;
-                    case "string": row[j] = Encoding.GetEncoding(type.Encoding).GetString(br.ReadBytes(int.Parse(type.SizeString))).Replace(@"\0", string.Empty); break;
+                    case "string": row[j] = Encoding.GetEncoding(type.Encoding).GetString(br.ReadBytes(int.Parse(type.SizeString))).Replace("\0", string.Empty); break;
                     default: throw new ArgumentOutOfRangeException();
                 }
 

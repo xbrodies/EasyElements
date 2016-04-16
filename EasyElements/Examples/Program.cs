@@ -30,6 +30,11 @@ namespace EasyElementsExample
 
             ShowInfo("Elements.data opened");
 
+            Console.WriteLine(elementsData.GetFreeID(29874, 65000));
+
+            ShowInfo("getfreeid");
+
+            /*
             //Get data
             foreach (DataRow row in elementsData.Data.Tables["012 - MEDICINE SUB TYPE"].Rows)
                 Console.WriteLine($"ID: {row["ID"]} \t Name: {row["Name"]}");
@@ -43,6 +48,7 @@ namespace EasyElementsExample
                 Console.WriteLine($"Count {confList.Caption}: {elementsList.Rows.Count}");
             }
 
+
             //Save elements.data
             var elementsWriter = new ElementsWriter(elementsReader);
             elementsWriter.Save();
@@ -50,7 +56,7 @@ namespace EasyElementsExample
             ShowInfo("Elements.data saved");
 
 
-
+    */
 
             _stopwatch.Stop();
             Console.ReadKey();
