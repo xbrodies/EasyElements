@@ -196,9 +196,7 @@ namespace EasyElements
 
             return -1;
         }
-    }
         #endregion
 
-
-    
+    }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
@@ -7,6 +9,14 @@ namespace EasyElements
     [Serializable]
     public class ElementsType
     {
+        public static Dictionary<string, object> DefaultValues { get; set; } = 
+            new Dictionary<string, object>
+            {
+                {"System.Int32", default(int) },
+                {"System.Single", default(float) },
+                {"System.String",string.Empty }
+            };
+
         [XmlAttribute]
         public string Name { get; set; }
 
@@ -31,20 +41,15 @@ namespace EasyElements
         [XmlElement("Rel")]
         public ElementsRelation[] Relations { get; set; }
 
-        public Type GetNormalType()
-        {
-            switch (Type)
-            {
-                case "int": return typeof(int);
-                case "float": return typeof(float);
-                case "string": return typeof(string);
-                default: throw new ArgumentOutOfRangeException();
-            }
-        }
+        [XmlIgnore]
+        public Type NormalType => System.Type.GetType(Type);
 
-        public override string ToString()
-        {
-            return Caption;
-        }
+        [XmlIgnore]
+        public object DefaultValue => DefaultValues[Type];
+
+        public override string ToString() => Caption;
+
     }
+
+
 }

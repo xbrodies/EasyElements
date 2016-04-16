@@ -90,10 +90,12 @@ namespace EasyElements
 
             foreach (var type in list.Types)
             {
-                var column = new DataColumn(type.Name, type.GetNormalType());
+                var column = new DataColumn(type.Name, type.NormalType)
+                {
+                    DefaultValue = type.DefaultValue,
+                    AllowDBNull = false
+                };
 
-                column.DefaultValue = column.DataType == typeof (string) ? (object) "" : 0;
-                column.AllowDBNull = false;
                 table.Columns.Add(column);
             }
 
@@ -117,9 +119,9 @@ namespace EasyElements
             {
                 switch (type.Type)
                 {
-                    case "int": row[j] = br.ReadInt32(); break;
-                    case "float": row[j] = br.ReadSingle(); break;
-                    case "string": row[j] = Encoding.GetEncoding(type.Encoding).GetString(br.ReadBytes(int.Parse(type.SizeString))).Replace("\0", string.Empty); break;
+                    case "System.Int32": row[j] = br.ReadInt32(); break;
+                    case "System.Single": row[j] = br.ReadSingle(); break;
+                    case "System.String": row[j] = Encoding.GetEncoding(type.Encoding).GetString(br.ReadBytes(int.Parse(type.SizeString))).Replace("\0", string.Empty); break;
                     default: throw new ArgumentOutOfRangeException();
                 }
 
