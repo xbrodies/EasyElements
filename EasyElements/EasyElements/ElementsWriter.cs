@@ -14,7 +14,6 @@ namespace EasyElements
         public string Path { get; set; }
         public ElementsData Elements { get; set; }
         public Config Config { get; set; }
-        private BinaryWriter _binaryWriter;
 
         public ElementsWriter(string path, ElementsData elements, Config config)
         {
@@ -32,21 +31,20 @@ namespace EasyElements
 
         public void Save()
         {
-            if (String.IsNullOrEmpty(Path)) throw new ArgumentException("Argument is null or empty", nameof(Path));
             if (Elements == null) throw new ArgumentNullException(nameof(Elements));
             if (Config == null) throw new ArgumentNullException(nameof(Config));
 
-            _binaryWriter = new BinaryWriter(File.OpenWrite(Path));
+            using (var _binaryWriter = new BinaryWriter(File.OpenWrite(Path)))
+            {
+                _binaryWriter.Write(Elements.Version);
+                _binaryWriter.Write(Elements.Segmentation);
 
-            _binaryWriter.Write(Elements.Version);
-            _binaryWriter.Write(Elements.Segmentation);
-
-            foreach (var list in Config.Lists.Where(x => x.Version <= Elements.Version))
-                WriteTable(list);
-
+                foreach (var list in Config.Lists.Where(x => x.Version <= Elements.Version))
+                    WriteTable(list, _binaryWriter);
+            }
         }
 
-        private void WriteTable(ElementsList list)
+        private void WriteTable(ElementsList list, BinaryWriter _binaryWriter)
         {
             if (Elements.SkipValues.ContainsKey(list))
                 foreach (var bytese in Elements.SkipValues[list])
@@ -58,15 +56,15 @@ namespace EasyElements
                 _binaryWriter.Write(values.Count);
 
             foreach (DataRow value in values)
-                WriteRow(value, list.Types);
+                WriteRow(value, list.Types, _binaryWriter);
         }
 
-        private void WriteRow(DataRow row, IEnumerable<ElementsType> Types)
+        private void WriteRow(DataRow row, IEnumerable<ElementsType> Types, BinaryWriter _binaryWriter)
         {
             foreach (var type in Types.Where(x => x.Version <= Elements.Version))
                 switch (type.Type)
                 {
-                    case "string":
+                    case "System.String":
                         {
                             var str = (string)row[type.Name];
                             var result = new byte[int.Parse(type.SizeString)];
@@ -77,11 +75,11 @@ namespace EasyElements
 
                             break;
                         }
-                    case "int":
+                    case "System.Int32":
                         _binaryWriter.Write((int)row[type.Name]);
                         break;
 
-                    case "float":
+                    case "System.Single":
                         _binaryWriter.Write((float)row[type.Name]);
                         break;
                 }

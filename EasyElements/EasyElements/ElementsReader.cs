@@ -13,8 +13,8 @@ namespace EasyElements
     {
         public string PathElements { get; }
         public ElementsData ElementsData { get; private set; }
-
         public Config Config { get; }
+
         private short version;
         private ElementsList[] _readLists;
 
