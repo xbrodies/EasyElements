@@ -30,7 +30,7 @@ namespace EasyElementsExample
 
             ShowInfo("Elements.data opened");
 
-            Console.WriteLine(elementsData.GetFreeID(29874, 65000));
+            Console.WriteLine(elementsData.GetFreeID(65000));
 
             ShowInfo("getfreeid");
 
